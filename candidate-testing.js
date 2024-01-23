@@ -42,8 +42,8 @@ function gradeQuiz(candidateAnswers) {
 
   //console.log("Candidate Answers: \t Correct Answers:\n")
 
-  for (i = 0; i < candidateAnswers.length; i++) {
-    console.log(`${i+1}. Candidate Answer: ${candidateAnswers[i]} \t Correct Answer: ${correctAnswers[i]}`);
+  for (let i = 0; i < candidateAnswers.length; i++) {
+    console.log(`\n ${i+1}.) ${questions[i]} \n Your Answer: ${candidateAnswers[i]} \n Correct Answer: ${correctAnswers[i]} `);
   }
 
 
