@@ -29,26 +29,36 @@ function askQuestion() {
   for (let i = 0; i < questions.length; i++) {
     candidateAnswers[i] = input.question(questions[i]);
     }
-  }
+}
+
 
 function gradeQuiz(candidateAnswers) {
 
   // TODO 1.2c: Let the candidate know if they have answered the question correctly or incorrectly // 
-  // if (candidateAnswer == correctAnswer) {
-  //   console.log("Correct!");
-  // } else {
-  //   console.log("Sorry, that is incorrect.");
-  // }
-
-  //console.log("Candidate Answers: \t Correct Answers:\n")
 
   for (let i = 0; i < candidateAnswers.length; i++) {
     console.log(`\n ${i+1}.) ${questions[i]} \n Your Answer: ${candidateAnswers[i]} \n Correct Answer: ${correctAnswers[i]} `);
   }
 
+  // Compare candidate answers and collect number of correct answers
+  let numCorrectAnswers = 0;
+  let lowerCandidateAnswers = candidateAnswers.toString().toLowerCase().split(',');
+  let lowerCorrectAnswers = correctAnswers.toString().toLowerCase().split(',');
 
-  let grade;  //TODO 3.2 use this variable to calculate the candidates score.
+  for (let j = 0; j < candidateAnswers.length; j++) {
+    if (lowerCandidateAnswers[j] == lowerCorrectAnswers[j]) {
+      numCorrectAnswers += 1;
+    }
+  }
 
+  let grade = (numCorrectAnswers / questions.length) * 100;  //TODO 3.2 use this variable to calculate the candidates score.
+
+  // Inform Candidate of pass/fail
+  if (grade >= 80) {
+    console.log(`\nCongratulations ${candidateName}! You have passed the quiz with a score of ${grade}, which is at least 80%!`);
+  } else {
+    console.log(`\nSorry ${candidateName}, you have failed the quiz with a score of ${grade}, which is less than 80%.`)
+  }
 
   return grade;
 }
